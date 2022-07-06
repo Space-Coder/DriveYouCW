@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="launcher_background">#FFFFFF</color>
+    <color name="colorPrimary">#feaa0a</color>
+    <color name="colorPrimaryDark">#c57b00</color>
+    <color name="colorAccent">#feaa0a</color>
+	<color name="mtrl_textinput_default_box_stroke_color">#570dff</color>
+</resources>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="DriveYou_Mobile.Views.MyTripsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:pages="clr-namespace:DriveYou_Mobile.Views"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="True"
+    Visual="Material">
+    <pages:MyTripsDriverPage Title="I'm Driver" />
+    <pages:MyTripsCompanionPage Title="I'm Companion" />
+</TabbedPage>

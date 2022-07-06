@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DriveYou_Mobile.Views.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:fluent="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+    xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:DriveYou_Mobile.ViewModels"
+    BackgroundColor="#242c3f"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False"
+    Visual="Material"
+    mc:Ignorable="d">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <RelativeLayout>
+            <lottie:AnimationView
+                Animation="blob3-3.json"
+                AnimationSource="AssetOrBundle"
+                AutoPlay="True"
+                RelativeLayout.HeightConstraint="500"
+                RelativeLayout.WidthConstraint="500"
+                RelativeLayout.XConstraint="-160"
+                RelativeLayout.YConstraint="-90"
+                RepeatMode="Infinite"
+                Speed="0.5" />
+            <lottie:AnimationView
+                Animation="blob2-2.json"
+                AnimationSource="AssetOrBundle"
+                AutoPlay="True"
+                RelativeLayout.HeightConstraint="500"
+                RelativeLayout.WidthConstraint="500"
+                RelativeLayout.XConstraint="120"
+                RelativeLayout.YConstraint="270"
+                RepeatMode="Infinite"
+                Speed="0.5" />
+
+            <fluent:MaterialFrame
+                Margin="0"
+                Padding="25"
+                CornerRadius="0"
+                HasShadow="True"
+                MaterialBlurStyle="Dark"
+                MaterialTheme="AcrylicBlur"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width}">
+                <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+                    <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                        <Image
+                            HeightRequest="64"
+                            Source="fulllogo.png"
+                            VerticalOptions="Center" />
+
+                    </ContentView>
+                    <StackLayout BindingContext="{Binding LoginUser}" Spacing="20">
+                        <material:MaterialTextField
+                            x:Name="NumberBox"
+                            AlwaysShowUnderline="True"
+                            CardBackgroundColor="#242c3f"
+                            FloatingPlaceholderColor="White"
+                            IsSpellCheckEnabled="True"
+                            IsTextPredictionEnabled="True"
+                            Placeholder="Number"
+                            PlaceholderColor="White"
+                            Text="{Binding Number}"
+                            TextColor="White" />
+                        <material:MaterialTextField
+                            x:Name="PasswordBox"
+                            AlwaysShowUnderline="True"
+                            CardBackgroundColor="#242c3f"
+                            FloatingPlaceholderColor="White"
+                            InputType="Password"
+                            IsSpellCheckEnabled="True"
+                            IsTextPredictionEnabled="True"
+                            Placeholder="Password"
+                            PlaceholderColor="White"
+                            Text="{Binding Password}"
+                            TextColor="White" />
+                    </StackLayout>
+                    <material:MaterialButton
+                        Margin="0,10,0,0"
+                        BackgroundColor="{StaticResource Primary}"
+                        Command="{Binding LoginCommand}"
+                        CornerRadius="50"
+                        Elevation="7"
+                        Text="Login"
+                        TextColor="White" />
+                    <Label
+                        Margin="0,30,0,-7"
+                        HorizontalOptions="Center"
+                        Text="Do not have a account?"
+                        TextColor="Gray" />
+                    <material:MaterialButton
+                        BackgroundColor="{StaticResource Primary}"
+                        ButtonType="Text"
+                        Command="{Binding GoToRegisterCommand}"
+                        CornerRadius="50"
+                        Text="Register"
+                        TextColor="White" />
+                </StackLayout>
+
+            </fluent:MaterialFrame>
+
+        </RelativeLayout>
+
+
+    </ContentPage.Content>
+</ContentPage>

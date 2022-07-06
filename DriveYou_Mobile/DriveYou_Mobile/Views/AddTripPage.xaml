@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DriveYou_Mobile.Views.AddTripPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fluent="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+    xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:DriveYou_Mobile.ViewModels"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    BackgroundColor="#242c3f"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="True"
+    Visual="Material">
+    <ContentPage.BindingContext>
+        <vm:AddTripViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <RelativeLayout>
+            <lottie:AnimationView
+                Animation="blob1-3.json"
+                AnimationSource="AssetOrBundle"
+                AutoPlay="True"
+                RelativeLayout.HeightConstraint="500"
+                RelativeLayout.WidthConstraint="500"
+                RelativeLayout.XConstraint="-90"
+                RelativeLayout.YConstraint="-90"
+                RepeatMode="Infinite"
+                Speed="0.5" />
+            <lottie:AnimationView
+                Animation="blob2-2.json"
+                AnimationSource="AssetOrBundle"
+                AutoPlay="True"
+                RelativeLayout.HeightConstraint="500"
+                RelativeLayout.WidthConstraint="500"
+                RelativeLayout.XConstraint="-100"
+                RelativeLayout.YConstraint="390"
+                RepeatMode="Infinite"
+                Speed="0.3" />
+            <lottie:AnimationView
+                Animation="blob3-3.json"
+                AnimationSource="AssetOrBundle"
+                AutoPlay="True"
+                RelativeLayout.HeightConstraint="500"
+                RelativeLayout.WidthConstraint="500"
+                RelativeLayout.XConstraint="210"
+                RelativeLayout.YConstraint="100"
+                RepeatMode="Infinite"
+                Speed="0.7" />
+
+            <StackLayout
+                Padding="5"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width}">
+                <fluent:MaterialFrame
+                    CornerRadius="5"
+                    HasShadow="True"
+                    MaterialBlurStyle="Dark"
+                    MaterialTheme="AcrylicBlur">
+
+                    <ScrollView
+                        Margin="-15"
+                        Padding="10"
+                        VerticalScrollBarVisibility="Never">
+                        <Grid>
+
+
+                            <StackLayout>
+                                <Label
+                                    Margin="5,0,0,0"
+                                    FontSize="Title"
+                                    Text="Add trip"
+                                    TextColor="White" />
+                                <material:MaterialTextField
+                                    x:Name="FromField"
+                                    AlwaysShowUnderline="False"
+                                    CardBackgroundColor="#242c3f"
+                                    FloatingPlaceholderColor="White"
+                                    InputType="Default"
+                                    IsSpellCheckEnabled="True"
+                                    IsTextPredictionEnabled="True"
+                                    Placeholder="From"
+                                    PlaceholderColor="White"
+                                    Text="{Binding Trip.From}"
+                                    TextColor="White"
+                                    UnderlineColor="{StaticResource Primary}" />
+                                <material:MaterialTextField
+                                    x:Name="ToField"
+                                    AlwaysShowUnderline="False"
+                                    CardBackgroundColor="#242c3f"
+                                    FloatingPlaceholderColor="White"
+                                    InputType="Default"
+                                    IsSpellCheckEnabled="True"
+                                    IsTextPredictionEnabled="True"
+                                    Placeholder="To"
+                                    PlaceholderColor="White"
+                                    Text="{Binding Trip.To}"
+                                    TextColor="White"
+                                    UnderlineColor="{StaticResource Primary}" />
+                                <StackLayout Orientation="Horizontal">
+                                    <material:MaterialDatePicker
+                                        x:Name="DateBox"
+                                        BackgroundColor="#242c3f"
+                                        Date="{Binding Trip.Date}"
+                                        Format="dd/MM/yyyy"
+                                        HorizontalOptions="FillAndExpand"
+                                        MinimumDate="{Binding MinimumDate}"
+                                        TextColor="White" />
+                                    <material:MaterialTimePicker
+                                        x:Name="TimeBox"
+                                        BackgroundColor="#242c3f"
+                                        Format="hh:mm"
+                                        HorizontalOptions="FillAndExpand"
+                                        TextColor="White"
+                                        Time="{Binding Time}" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <material:MaterialTextField
+                                        x:Name="CostField"
+                                        AlwaysShowUnderline="False"
+                                        CardBackgroundColor="#242c3f"
+                                        FloatingPlaceholderColor="White"
+                                        HorizontalOptions="FillAndExpand"
+                                        InputType="Numeric"
+                                        IsSpellCheckEnabled="True"
+                                        IsTextPredictionEnabled="True"
+                                        Placeholder="Cost"
+                                        PlaceholderColor="White"
+                                        Text="{Binding Trip.Cost}"
+                                        TextColor="White" />
+                                    <material:MaterialTextField
+                                        x:Name="SeatsField"
+                                        AlwaysShowUnderline="False"
+                                        CardBackgroundColor="#242c3f"
+                                        FloatingPlaceholderColor="White"
+                                        HorizontalOptions="FillAndExpand"
+                                        InputType="Numeric"
+                                        IsMaxLengthCounterVisible="False"
+                                        IsSpellCheckEnabled="True"
+                                        IsTextPredictionEnabled="True"
+                                        MaxLength="2"
+                                        Placeholder="Seat's Count"
+                                        PlaceholderColor="White"
+                                        Text="{Binding Trip.Seats}"
+                                        TextColor="White" />
+                                </StackLayout>
+                                <material:MaterialTextField
+                                    x:Name="CommentField"
+                                    AlwaysShowUnderline="False"
+                                    CardBackgroundColor="#242c3f"
+                                    FloatingPlaceholderColor="White"
+                                    HelperTextColor="White"
+                                    InputType="Default"
+                                    IsMaxLengthCounterVisible="True"
+                                    IsSpellCheckEnabled="True"
+                                    IsTextPredictionEnabled="True"
+                                    MaxLength="100"
+                                    Placeholder="Comment"
+                                    PlaceholderColor="White"
+                                    Text="{Binding Trip.Comment}"
+                                    TextColor="White" />
+                                <Label
+                                    Margin="5,0,0,0"
+                                    FontSize="Subtitle"
+                                    Text="Options"
+                                    TextColor="White" />
+                                <material:MaterialCheckbox
+                                    IsSelected="{Binding Trip.IsAnimals}"
+                                    Text="Animals"
+                                    TextColor="White"
+                                    UnselectedColor="White" />
+                                <material:MaterialCheckbox
+                                    IsSelected="{Binding Trip.IsSmoking}"
+                                    Text="Smoking"
+                                    TextColor="White"
+                                    UnselectedColor="White" />
+                                <material:MaterialCheckbox
+                                    IsSelected="{Binding Trip.IsBagage}"
+                                    Text="Bagage"
+                                    TextColor="White"
+                                    UnselectedColor="White" />
+                                <material:MaterialButton
+                                    Command="{Binding AddTripCommand}"
+                                    Text="Add"
+                                    VerticalOptions="EndAndExpand" />
+                            </StackLayout>
+
+                            <fluent:MaterialFrame
+                                x:Name="BisyCard"
+                                Margin="110,250,110,250"
+                                CornerRadius="5"
+                                HasShadow="False"
+                                IsVisible="{Binding IsBusy}"
+                                MaterialBlurStyle="Dark"
+                                MaterialTheme="Dark">
+                                <material:MaterialCircularLoadingView
+                                    Animation="{Binding AnimationUrl}"
+                                    AnimationSource="Url"
+                                    AutoPlay="True"
+                                    HeightRequest="100"
+                                    RepeatMode="Reverse"
+                                    WidthRequest="100">
+                                    <material:MaterialCircularLoadingView.Behaviors>
+                                        <xct:EventToCommandBehavior Command="{Binding HideBusyIndicator}" EventName="OnFinishedAnimation" />
+                                    </material:MaterialCircularLoadingView.Behaviors>
+                                </material:MaterialCircularLoadingView>
+                            </fluent:MaterialFrame>
+                        </Grid>
+                    </ScrollView>
+                </fluent:MaterialFrame>
+            </StackLayout>
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

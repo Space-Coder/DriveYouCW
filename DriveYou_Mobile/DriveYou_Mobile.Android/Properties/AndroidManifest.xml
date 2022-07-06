@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.driveyou_mobile" android:installLocation="preferExternal">
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="31" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+	<uses-permission android:name="android.permission.CALL_PHONE" />
+	<application android:allowBackup="false" android:label="DriveYou_Mobile.Android" android:icon="@drawable/logo"></application>
+	<queries>
+		<intent>
+			<action android:name="android.intent.action.DIAL" />
+			<data android:scheme="tel"/>
+		</intent>
+	</queries>
+	<queries>
+		<intent>
+			<action android:name="android.intent.action.VIEW" />
+			<data android:scheme="smsto"/>
+		</intent>
+	</queries>
+</manifest>

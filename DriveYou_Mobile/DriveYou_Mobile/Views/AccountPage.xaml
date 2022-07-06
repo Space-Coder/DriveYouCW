@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DriveYou_Mobile.Views.AccountPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:DriveYou_Mobile.Converters"
+    xmlns:fluent="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+    xmlns:imgcircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:local="clr-namespace:DriveYou_Mobile.ViewModels"
+    xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    Title="Алексей Синицкий"
+    BackgroundColor="#242c3f"
+    Shell.NavBarIsVisible="False"
+    Shell.PresentationMode="ModalAnimated"
+    Shell.TabBarIsVisible="True"
+    Visual="Material">
+    <ContentPage.Resources>
+        <converters:StringToImageConverter x:Key="StringToImageConverter" />
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <local:AccountViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+            <RelativeLayout>
+                <lottie:AnimationView
+                    Animation="blob1-3.json"
+                    AnimationSource="AssetOrBundle"
+                    AutoPlay="True"
+                    RelativeLayout.HeightConstraint="500"
+                    RelativeLayout.WidthConstraint="500"
+                    RelativeLayout.XConstraint="-200"
+                    RelativeLayout.YConstraint="100"
+                    RepeatMode="Infinite"
+                    Speed="0.5" />
+                <lottie:AnimationView
+                    Animation="blob2-2.json"
+                    AnimationSource="AssetOrBundle"
+                    AutoPlay="True"
+                    RelativeLayout.HeightConstraint="500"
+                    RelativeLayout.WidthConstraint="500"
+                    RelativeLayout.XConstraint="80"
+                    RelativeLayout.YConstraint="420"
+                    RepeatMode="Infinite"
+                    Speed="0.3" />
+                <lottie:AnimationView
+                    Animation="blob3-3.json"
+                    AnimationSource="AssetOrBundle"
+                    AutoPlay="True"
+                    RelativeLayout.HeightConstraint="500"
+                    RelativeLayout.WidthConstraint="500"
+                    RelativeLayout.XConstraint="120"
+                    RelativeLayout.YConstraint="-140"
+                    RepeatMode="Infinite"
+                    Speed="0.7" />
+                <ScrollView
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                           Property=Height}"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Width}"
+                    VerticalScrollBarVisibility="Never">
+                    <Grid>
+                        <StackLayout Padding="7" Orientation="Vertical">
+                            <fluent:MaterialFrame
+                                Padding="25"
+                                HasShadow="True"
+                                MaterialBlurStyle="Dark"
+                                MaterialTheme="AcrylicBlur">
+                                <StackLayout Orientation="Horizontal">
+                                    <imgcircle:CircleImage
+                                        Aspect="AspectFit"
+                                        HeightRequest="80"
+                                        HorizontalOptions="Start"
+                                        Source="{Binding CurrentUser.Photo, Converter={StaticResource StringToImageConverter}, ConverterParameter=account}">
+                                        <imgcircle:CircleImage.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding LoadUserPhotoCommand}" />
+                                        </imgcircle:CircleImage.GestureRecognizers>
+                                    </imgcircle:CircleImage>
+                                    <StackLayout Orientation="Vertical">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                                Margin="20,0,0,0"
+                                                FontAttributes="Bold"
+                                                FontSize="Title"
+                                                Text="{Binding CurrentUser.Name}"
+                                                TextColor="White" />
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="Title"
+                                                Text="{Binding CurrentUser.Surname}"
+                                                TextColor="White" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                                Margin="20,0,0,0"
+                                                FontFamily="RegularMaterial"
+                                                FontSize="Medium"
+                                                Text="&#xf0ec;"
+                                                TextColor="{StaticResource Primary}" />
+                                            <Label
+                                                FontAttributes="Bold"
+                                                HorizontalOptions="Center"
+                                                Text="{Binding CurrentUser.Rating}"
+                                                TextColor="White" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </fluent:MaterialFrame>
+
+
+                            <fluent:MaterialFrame
+                                x:Name="CardAccountInfo"
+                                Padding="25"
+                                HasShadow="True"
+                                MaterialBlurStyle="Dark"
+                                MaterialTheme="AcrylicBlur">
+                                <StackLayout Orientation="Vertical">
+                                    <!--  <Label
+                                x:Name="AccountInfoLabel"
+                                FontSize="Caption"
+                                HorizontalTextAlignment="Start"
+                                Text="Начинающий Android разработчик. Знаком с .NET и WPF разработкой под Desktop. Студент Белорусского государственного университета. Буду рад новым знакомствам."
+                                TextColor="White"
+                                VerticalTextAlignment="Center" />-->
+                                    <Grid x:Name="AccountInfoGrid">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Label
+                                            x:Name="RatingLabel"
+                                            Grid.Column="0"
+                                            FontAttributes="Bold"
+                                            FontSize="Title"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding CurrentUser.Rating}"
+                                            TextColor="White" />
+                                        <Label
+                                            x:Name="TripsLabel"
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            FontSize="Title"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding CurrentUser.EndedTrips.Count}"
+                                            TextColor="White" />
+                                        <Label
+                                            x:Name="ReviewsLabel"
+                                            Grid.Column="2"
+                                            FontAttributes="Bold"
+                                            FontSize="Title"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding CurrentUser.UserReviews.Count}"
+                                            TextColor="White" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            HorizontalOptions="Center"
+                                            Text="рейтинг"
+                                            TextColor="White" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            HorizontalOptions="Center"
+                                            Text="поездок"
+                                            TextColor="White" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="2"
+                                            HorizontalOptions="Center"
+                                            Text="отзывов"
+                                            TextColor="White" />
+                                    </Grid>
+                                </StackLayout>
+                            </fluent:MaterialFrame>
+                            <fluent:MaterialFrame
+                                x:Name="CardAccountReview"
+                                Padding="25"
+                                HasShadow="True"
+                                MaterialBlurStyle="Dark"
+                                MaterialTheme="AcrylicBlur">
+                                <StackLayout>
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="Body"
+                                        Text="Отзывы"
+                                        TextColor="White" />
+
+
+                                    <ListView
+                                        HasUnevenRows="True"
+                                        HeightRequest="{Binding ListHeight}"
+                                        IsPullToRefreshEnabled="False"
+                                        ItemsSource="{Binding CurrentUser.UserReviews}"
+                                        SeparatorVisibility="None"
+                                        VerticalScrollBarVisibility="Never">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout
+                                                        Padding="0,10,0,10"
+                                                        Orientation="Horizontal"
+                                                        Spacing="20">
+                                                        <imgcircle:CircleImage
+                                                            Aspect="AspectFit"
+                                                            HeightRequest="60"
+                                                            HorizontalOptions="Start"
+                                                            Source="{Binding User.Photo, Converter={StaticResource StringToImageConverter}, ConverterParameter=account}" />
+                                                        <StackLayout Orientation="Vertical" Spacing="3">
+                                                            <Label
+                                                                FontSize="Subtitle"
+                                                                Text="{Binding User.Name}"
+                                                                TextColor="White" />
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label
+                                                                    FontFamily="RegularMaterial"
+                                                                    FontSize="Medium"
+                                                                    Text="&#xf0ec;"
+                                                                    TextColor="{StaticResource Primary}" />
+                                                                <Label Text="{Binding Assessment}" TextColor="White" />
+                                                            </StackLayout>
+                                                            <Label
+                                                                FontSize="Header"
+                                                                Text="{Binding Comment}"
+                                                                TextColor="White" />
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+
+                                </StackLayout>
+
+                            </fluent:MaterialFrame>
+                            <fluent:MaterialFrame
+                                Padding="25"
+                                HasShadow="True"
+                                MaterialBlurStyle="Dark"
+                                MaterialTheme="AcrylicBlur">
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="Body"
+                                            Text="Автомобиль"
+                                            TextColor="White" />
+                                        <material:MaterialIcon
+                                            HeightRequest="25"
+                                            HorizontalOptions="EndAndExpand"
+                                            Source="pencil.png">
+                                            <material:MaterialIcon.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding EditCarInfoCommand}" />
+                                            </material:MaterialIcon.GestureRecognizers>
+                                        </material:MaterialIcon>
+                                    </StackLayout>
+                                    <Label Text="{Binding CarInfo}" TextColor="White" />
+                                    <Image
+                                        Aspect="AspectFit"
+                                        HeightRequest="350"
+                                        Source="{Binding CurrentUser.CarImage, Converter={StaticResource StringToImageConverter}, ConverterParameter=car}" />
+                                </StackLayout>
+                            </fluent:MaterialFrame>
+                        </StackLayout>
+                        <fluent:MaterialFrame
+                            x:Name="BisyCard"
+                            Margin="100,260,100,260"
+                            CornerRadius="5"
+                            HasShadow="True"
+                            IsVisible="{Binding IsBusyLoading}"
+                            MaterialBlurStyle="Dark"
+                            MaterialTheme="Dark"
+                            VerticalOptions="StartAndExpand">
+                            <material:MaterialCircularLoadingView
+                                Animation="{Binding AnimationUrl}"
+                                AnimationSource="Url"
+                                AutoPlay="True"
+                                HeightRequest="100"
+                                RepeatCount="{Binding RepCounter}"
+                                RepeatMode="Restart"
+                                WidthRequest="100">
+                                <material:MaterialCircularLoadingView.Behaviors>
+                                    <xct:EventToCommandBehavior Command="{Binding HideBusyIndicator}" EventName="OnFinishedAnimation" />
+                                </material:MaterialCircularLoadingView.Behaviors>
+                            </material:MaterialCircularLoadingView>
+                        </fluent:MaterialFrame>
+                    </Grid>
+                </ScrollView>
+            </RelativeLayout>
+
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

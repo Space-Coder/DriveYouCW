@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DriveYou_Mobile.Views.TripsDetailedPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:DriveYou_Mobile.Converters"
+    xmlns:fluent="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+    xmlns:imgcircle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+    xmlns:local="clr-namespace:DriveYou_Mobile.ViewModels"
+    xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    Title="Запланированная поездка"
+    BackgroundColor="#242c3f"
+    Shell.NavBarHasShadow="False"
+    Shell.TabBarIsVisible="False"
+    Visual="Material">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BackToHomeTripsCommand}" />
+    </Shell.BackButtonBehavior>
+    <ContentPage.BindingContext>
+        <local:TripsDetailedPageViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BooleanToStringConverter x:Key="TripOptionsConverter" />
+            <converters:StringToImageConverter x:Key="StringToImageConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <RelativeLayout>
+            <lottie:AnimationView
+                Animation="blob1-3.json"
+                AnimationSource="AssetOrBundle"
+                AutoPlay="True"
+                RelativeLayout.HeightConstraint="500"
+                RelativeLayout.WidthConstraint="500"
+                RelativeLayout.XConstraint="-200"
+                RelativeLayout.YConstraint="100"
+                RepeatMode="Infinite"
+                Speed="0.5" />
+            <lottie:AnimationView
+                Animation="blob2-2.json"
+                AnimationSource="AssetOrBundle"
+                AutoPlay="True"
+                RelativeLayout.HeightConstraint="500"
+                RelativeLayout.WidthConstraint="500"
+                RelativeLayout.XConstraint="80"
+                RelativeLayout.YConstraint="420"
+                RepeatMode="Infinite"
+                Speed="0.3" />
+            <lottie:AnimationView
+                Animation="blob3-3.json"
+                AnimationSource="AssetOrBundle"
+                AutoPlay="True"
+                RelativeLayout.HeightConstraint="500"
+                RelativeLayout.WidthConstraint="500"
+                RelativeLayout.XConstraint="120"
+                RelativeLayout.YConstraint="-140"
+                RepeatMode="Infinite"
+                Speed="0.7" />
+            <StackLayout
+                Margin="0"
+                Padding="25"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width}">
+                <ScrollView
+                    Margin="-25"
+                    Padding="15"
+                    VerticalScrollBarVisibility="Never">
+                    <StackLayout>
+                        <fluent:MaterialFrame
+                            Margin="0"
+                            Padding="20"
+                            HasShadow="True"
+                            MaterialBlurStyle="Dark"
+                            MaterialTheme="AcrylicBlur">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label
+                                        x:Name="Time"
+                                        FontAttributes="Bold"
+                                        FontFamily="Roboto"
+                                        FontSize="24"
+                                        HorizontalOptions="StartAndExpand"
+                                        Text="{Binding Trip.ScheduledTrips.Date.TimeOfDay}"
+                                        TextColor="White" />
+                                    <Label
+                                        x:Name="Cost"
+                                        FontAttributes="Bold"
+                                        FontFamily="Roboto"
+                                        FontSize="24"
+                                        HorizontalOptions="EndAndExpand"
+                                        Text="{Binding Trip.ScheduledTrips.Cost}"
+                                        TextColor="White" />
+                                </StackLayout>
+                                <StackLayout>
+                                    <Label
+                                        x:Name="SeatsCount"
+                                        FontAttributes="Bold"
+                                        FontFamily="Roboto"
+                                        FontSize="18"
+                                        HorizontalOptions="StartAndExpand"
+                                        Text="{Binding SeatInfo}"
+                                        TextColor="LightGray" />
+                                    <Button
+                                        x:Name="SubscribeButton"
+                                        Command="{Binding ActionCommand}"
+                                        IsVisible="{Binding IsTripCompanion}"
+                                        Text="{Binding ActionCaption}"
+                                        TextColor="White"
+                                        TextTransform="None" />
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical">
+                                    <StackLayout Orientation="Vertical">
+                                        <Frame
+                                            Margin="10,10,10,0"
+                                            Padding="3"
+                                            BackgroundColor="#c57b00"
+                                            CornerRadius="25"
+                                            HeightRequest="11">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Ellipse
+                                                    Aspect="Uniform"
+                                                    Fill="White"
+                                                    HeightRequest="10"
+                                                    HorizontalOptions="StartAndExpand"
+                                                    WidthRequest="10" />
+                                                <Ellipse
+                                                    Aspect="Uniform"
+                                                    Fill="White"
+                                                    HeightRequest="10"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    WidthRequest="10" />
+                                            </StackLayout>
+                                        </Frame>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                            x:Name="StartCity"
+                                            FontAttributes="None"
+                                            FontFamily="Roboto"
+                                            FontSize="18"
+                                            HorizontalOptions="StartAndExpand"
+                                            Text="{Binding Trip.ScheduledTrips.From}"
+                                            TextColor="White" />
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="{Binding Distance}"
+                                            TextColor="White"
+                                            VerticalOptions="CenterAndExpand" />
+                                        <Label
+                                            x:Name="EndCity"
+                                            FontAttributes="None"
+                                            FontFamily="Roboto"
+                                            FontSize="18"
+                                            HorizontalOptions="EndAndExpand"
+                                            Text="{Binding Trip.ScheduledTrips.To}"
+                                            TextColor="White" />
+
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </fluent:MaterialFrame>
+                        <fluent:MaterialFrame
+                            Margin="0"
+                            Padding="20"
+                            HasShadow="True"
+                            IsVisible="{Binding IsTripCompanion}"
+                            MaterialBlurStyle="Dark"
+                            MaterialTheme="AcrylicBlur">
+                            <StackLayout>
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontFamily="Roboto"
+                                    FontSize="Body"
+                                    Text="Связь с водителем"
+                                    TextColor="White" />
+                                <StackLayout Orientation="Horizontal">
+                                    <material:MaterialIconButton
+                                        BackgroundColor="{StaticResource Primary}"
+                                        ButtonType="Flat"
+                                        Command="{Binding CallCommand}"
+                                        CornerRadius="50"
+                                        HeightRequest="70"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Image="phone.png"
+                                        WidthRequest="70" />
+                                    <material:MaterialIconButton
+                                        BackgroundColor="{StaticResource Primary}"
+                                        ButtonType="Flat"
+                                        Command="{Binding MessageCommand}"
+                                        CornerRadius="50"
+                                        HeightRequest="70"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Image="message.png"
+                                        WidthRequest="70" />
+                                </StackLayout>
+                            </StackLayout>
+                        </fluent:MaterialFrame>
+                        <fluent:MaterialFrame
+                            Margin="0"
+                            Padding="20"
+                            HasShadow="True"
+                            MaterialBlurStyle="Dark"
+                            MaterialTheme="AcrylicBlur">
+                            <StackLayout>
+                                <StackLayout>
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontFamily="Roboto"
+                                        FontSize="Body"
+                                        Text="Комментарий водителя"
+                                        TextColor="White" />
+                                    <Label Text="{Binding Trip.ScheduledTrips.Comment}" TextColor="White" />
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontFamily="Roboto"
+                                        FontSize="Body"
+                                        Text="Животные"
+                                        TextColor="White" />
+                                    <Label Text="{Binding Trip.ScheduledTrips.IsAnimals, Converter={StaticResource TripOptionsConverter}, ConverterParameter=animal}" TextColor="White" />
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontFamily="Roboto"
+                                        FontSize="Body"
+                                        Text="Багаж"
+                                        TextColor="White" />
+                                    <Label Text="{Binding Trip.ScheduledTrips.IsBagage, Converter={StaticResource TripOptionsConverter}, ConverterParameter=bagage}" TextColor="White" />
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontFamily="Roboto"
+                                        FontSize="Body"
+                                        Text="Курение"
+                                        TextColor="White" />
+                                    <Label Text="{Binding Trip.ScheduledTrips.IsSmoking, Converter={StaticResource TripOptionsConverter}, ConverterParameter=smoking}" TextColor="White" />
+                                </StackLayout>
+                            </StackLayout>
+                        </fluent:MaterialFrame>
+                        <fluent:MaterialFrame
+                            Margin="0"
+                            Padding="20"
+                            HasShadow="True"
+                            MaterialBlurStyle="Dark"
+                            MaterialTheme="AcrylicBlur">
+                            <fluent:MaterialFrame.GestureRecognizers>
+                                <TapGestureRecognizer />
+                            </fluent:MaterialFrame.GestureRecognizers>
+                            <StackLayout>
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontFamily="Roboto"
+                                    FontSize="Body"
+                                    Text="Водитель"
+                                    TextColor="White" />
+                                <StackLayout>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenDriverInfo}" />
+                                    </StackLayout.GestureRecognizers>
+                                    <StackLayout Padding="10" Orientation="Horizontal">
+                                        <imgcircle:CircleImage
+                                            Aspect="AspectFit"
+                                            HeightRequest="60"
+                                            HorizontalOptions="Start"
+                                            Source="{Binding Trip.Photo, Converter={StaticResource StringToImageConverter}, ConverterParameter=account}" />
+                                        <StackLayout>
+                                            <Label Text="{Binding Trip.Name}" TextColor="White" />
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label
+                                                    FontFamily="RegularMaterial"
+                                                    FontSize="Subtitle"
+                                                    Text="&#xf0ec;"
+                                                    TextColor="{StaticResource Primary}" />
+                                                <Label Text="{Binding Trip.Rating}" TextColor="White" />
+                                            </StackLayout>
+                                            <Label Text="{Binding CarInfo}" TextColor="White" />
+                                        </StackLayout>
+
+                                    </StackLayout>
+                                </StackLayout>
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontFamily="Roboto"
+                                    FontSize="Body"
+                                    Text="Пассажиры"
+                                    TextColor="White" />
+
+                                <ListView
+                                    x:Name="ListView"
+                                    HasUnevenRows="True"
+                                    HeightRequest="{Binding ListHeight}"
+                                    IsPullToRefreshEnabled="True"
+                                    IsRefreshing="{Binding IsBusy}"
+                                    ItemsSource="{Binding Trip.SubscribedOnTrips, Mode=TwoWay}"
+                                    RefreshCommand="{Binding LoadMyTrips}"
+                                    SelectedItem="{Binding SubscribedUser, Mode=TwoWay}"
+                                    SelectionMode="Single"
+                                    SeparatorVisibility="None"
+                                    VerticalScrollBarVisibility="Never">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout>
+                                                    <StackLayout Padding="10" Orientation="Horizontal">
+                                                        <imgcircle:CircleImage
+                                                            Aspect="AspectFit"
+                                                            HeightRequest="60"
+                                                            HorizontalOptions="Start"
+                                                            Source="{Binding User.Photo, Converter={StaticResource StringToImageConverter}, ConverterParameter=account}" />
+                                                        <StackLayout>
+                                                            <Label
+                                                                x:Name="UserName"
+                                                                Text="{Binding User.Name}"
+                                                                TextColor="White" />
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label
+                                                                    x:Name="IconRating"
+                                                                    FontFamily="RegularMaterial"
+                                                                    FontSize="Subtitle"
+                                                                    Text="&#xf0ec;"
+                                                                    TextColor="{StaticResource Primary}" />
+                                                                <Label
+                                                                    x:Name="Rating"
+                                                                    Text="{Binding User.Rating}"
+                                                                    TextColor="White" />
+
+                                                            </StackLayout>
+                                                        </StackLayout>
+
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+
+                            </StackLayout>
+                        </fluent:MaterialFrame>
+                        <fluent:MaterialFrame
+                            Margin="0"
+                            Padding="20"
+                            HasShadow="True"
+                            MaterialBlurStyle="Dark"
+                            MaterialTheme="AcrylicBlur">
+                            <StackLayout>
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontFamily="Roboto"
+                                    FontSize="Body"
+                                    Text="Автомобиль"
+                                    TextColor="White" />
+                                <Label Text="{Binding CarInfo}" TextColor="White" />
+                                <Image HeightRequest="350" Source="{Binding Trip.CarImage, ConverterParameter=car, Converter={StaticResource StringToImageConverter}}" />
+                            </StackLayout>
+                        </fluent:MaterialFrame>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+
+
+
+
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DriveYou_Mobile.Views.EditCarPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    xmlns:models="clr-namespace:DriveYou_Mobile.ViewModels"
+    BackgroundColor="#242c3f"
+    Shell.PresentationMode="ModalAnimated"
+    Visual="Material">
+    <ContentPage.BindingContext>
+        <models:EditCarPageViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="15,30,15,0" Spacing="3">
+            <Entry
+                BackgroundColor="#242c3f"
+                IsSpellCheckEnabled="True"
+                IsTextPredictionEnabled="True"
+                Keyboard="Default"
+                Placeholder="Car Mark"
+                PlaceholderColor="White"
+                Text="{Binding CarInfo.CarMark}"
+                TextColor="White"
+                Visual="Material" />
+            <Entry
+                BackgroundColor="#242c3f"
+                IsSpellCheckEnabled="True"
+                IsTextPredictionEnabled="True"
+                Keyboard="Default"
+                Placeholder="Car Model"
+                PlaceholderColor="White"
+                Text="{Binding CarInfo.CarModel}"
+                TextColor="White"
+                Visual="Material" />
+            <material:MaterialButton
+                ButtonType="Text"
+                Command="{Binding OpenImageCommand}"
+                Text="Add photo" />
+            <material:MaterialButton
+                BorderColor="{StaticResource Primary}"
+                BorderWidth="2"
+                ButtonType="Outlined"
+                Command="{Binding SaveCommand}"
+                Text="Save" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

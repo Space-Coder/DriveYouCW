@@ -1,0 +1,96 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Fonts\MaterialIcons-Regular.ttf" />
+    <None Remove="Fonts\MaterialIconsOutlined-Regular.otf" />
+    <None Remove="Fonts\MaterialIconsRound-Regular.otf" />
+    <None Remove="Fonts\MaterialIconsSharp-Regular.otf" />
+    <None Remove="Fonts\MaterialIconsTwoTone-Regular.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Fonts\MaterialIcons-Regular.ttf" />
+    <EmbeddedResource Include="Fonts\MaterialIconsOutlined-Regular.otf" />
+    <EmbeddedResource Include="Fonts\MaterialIconsRound-Regular.otf" />
+    <EmbeddedResource Include="Fonts\MaterialIconsSharp-Regular.otf" />
+    <EmbeddedResource Include="Fonts\MaterialIconsTwoTone-Regular.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Sharpnado.MaterialFrame" Version="1.3.0" />
+    <PackageReference Include="System.Text.Json" Version="6.0.3" />
+    <PackageReference Include="Vapolia.Xamarin.Svg.Forms" Version="4.1.0" />
+    <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.2" />
+    <PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="2.0.2" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />  
+    <PackageReference Include="Xamarin.Forms.CustomControls" Version="0.1.24" />  
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2401" />  
+    <PackageReference Include="XamarinForms.CardView.NetStandard" Version="1.1.1.5" />  
+    <PackageReference Include="XF.Material" Version="1.8.0" />  
+    <PackageReference Include="XF.Material.Outline" Version="0.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>E:\Programs\Microsoft Visual Studio\2022\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v12.0\Mono.Android.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Styles\Colors.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\MaterialFrame.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AccountPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AddTripPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\EditCarPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\HomeTrips.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MyTripsCompanionPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MyTripsDriverPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MyTripsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\RegisterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TripsDetailedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Views\HomeTrips.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+</Project>
